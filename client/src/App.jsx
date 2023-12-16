@@ -8,7 +8,9 @@ function App() {
   useEffect(() => {
     const fetchdata = async () => {
       try {
-        const allusers = await fetch("http://localhost:8000/getuser");
+        const allusers = await fetch(
+          "https://mern-backend-maft.onrender.com/getuser"
+        );
         const data = await allusers.json();
         setUsers(data);
       } catch (error) {
@@ -20,15 +22,20 @@ function App() {
 
   const submitHandler = async () => {
     try {
-      const userInfo = await fetch("http://localhost:8000/adduser", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, age }),
-      });
+      const userInfo = await fetch(
+        "https://mern-backend-maft.onrender.com/adduser",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, age }),
+        }
+      );
 
-      const updatedAllUsers = await fetch("http://localhost:8000/getuser");
+      const updatedAllUsers = await fetch(
+        "https://mern-backend-maft.onrender.com/getuser"
+      );
       const updatedData = await updatedAllUsers.json();
       setUsers(updatedData);
 
